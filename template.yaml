@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  nexus-app
+
+Resources:
+  NexusApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Auth:
+        ApiKeyRequired: true
+
+  NexusFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: nexus/ip
+      Handler: app.ip_address_handler
+      Runtime: python3.9
+      Events:
+        Nexus:
+          Type: Api 
+          Properties:
+            RestApiId: !Ref NexusApi
+            Path: /ip
+            Method: get
+  NexusUAFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: nexus/ua
+      Handler: app.user_agent_handler
+      Runtime: python3.9
+      Events:
+        Nexus:
+          Type: Api 
+          Properties:
+            RestApiId: !Ref NexusApi
+            Path: /ua
+            Method: get
+Outputs:
+  NexusApi:
+    Description: "API Gateway endpoint URL for Prod stage for Nexus function"
+    Value: !Sub "https://${NexusApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/Nexus/"
+  NexusFunction:
+    Description: "Nexus Lambda Function ARN"
+    Value: !GetAtt NexusFunction.Arn
+  NexusUAFunction:
+    Description: "Nexus Lambda Function ARN"
+    Value: !GetAtt NexusFunction.Arn
+  NexusFunctionIamRole:
+    Description: "Implicit IAM Role created for Nexus function"
+    Value: !GetAtt NexusFunctionRole.Arn
