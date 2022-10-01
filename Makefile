@@ -20,3 +20,6 @@ deploy:
 clean:
 	docker images | grep 'public.ecr.aws' |  xargs docker rmi
 
+format:
+	isort nexus/
+	autopep8 nexus/
