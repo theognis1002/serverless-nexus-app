@@ -16,11 +16,14 @@ deploy:
 ################
 # Test Commands
 ################
+test:
+	pytest
+
 server:
 	sam local start-lambda
 
-test:
-	pytest -rP
+mocktest:
+	MOCK_SERVER=1 pytest
 
 ##################
 # Utility Commands

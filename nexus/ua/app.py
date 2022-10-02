@@ -10,7 +10,7 @@ def user_agent_handler(event, context):
         "statusCode": 200,
         "body": json.dumps(
             {
-                "status_code": f"{response.status_code}",
+                "status_code": response.status_code,
                 "user_agent": f"{response.json()}"
             }
         ),
