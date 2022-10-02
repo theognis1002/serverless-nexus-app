@@ -1,4 +1,8 @@
 # nexus-app
+![alt text](https://img.shields.io/github/workflow/status/theognis1002/serverless-nexus-app/CI/main?style=for-the-badge)
+![alt text](https://img.shields.io/badge/Coverage-100%25-success?style=for-the-badge)
+![alt text](https://img.shields.io/badge/code%20style-autopep8-FF5733.svg?style=for-the-badge)
+
 Serverless app built using AWS Serverless Application Model (SAM). 
 
 ## Technologies
