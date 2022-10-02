@@ -3,3 +3,4 @@ isort
 pytest
 boto3
 botocore
+requests
