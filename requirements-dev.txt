@@ -1,2 +1,5 @@
 autopep8
 isort
+pytest
+boto3
+botocore
